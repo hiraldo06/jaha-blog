@@ -1,0 +1,27 @@
+{
+  "name": "practica",
+  "version": "1.0.0",
+  "description": "Blog clase java script",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hiraldo06/jaha-blog.git"
+  },
+  "keywords": [
+    "Javascript",
+    "ITLA"
+  ],
+  "author": "JAHA",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hiraldo06/jaha-blog/issues"
+  },
+  "homepage": "https://github.com/hiraldo06/jaha-blog#readme",
+  "dependencies": {
+    "feather-icons": "^4.9.0"
+  }
+}

@@ -6,20 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>JAHABlog-login</title>
     <link rel="stylesheet" href="../assets/css/style.css">
+
+
 </head>
 <body>
-    <div class="container">
+    <div class="container login">
         <div class="login-container">
-            <h3 class="login"> </h3>
+            <h3 class="title-login"> </h3>
+            <div hidden id='error-login' class="error">
+                <h3>EL password o el usuario no son correcto</h3>
+            </div>
             <form action="">
-                <input class="form-control" type="text" placeholder="USUARIO">
-                <input class="form-control" type="text" placeholder="CONTRASEÑA">
+                <input id="email"class="form-control" type="text" placeholder="USUARIO">
+
+                <input id="password"class="form-control" type="password" placeholder="CONTRASEÑA">
                 <div class="action-login">
                     <a href="./registro.html">+REGISTRATE</a>
-                     <button>Entrar</button>
+                     <button id="btn" type="button">Entrar</button>
                 </div>
             </form>
         </div>
     </div>
+    <script src="../assets/js/login.js"></script>
 </body>
 </html>
