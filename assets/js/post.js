@@ -15,14 +15,14 @@ let getPostById=()=>{
         
 
        
-        let {body,title}=res;
-        getUserById(res.userId,token).then(result=>{
+        let {body,title,userId}=res;
+        getUserById(userId,token).then(result=>{
             document.getElementById('main').innerHTML+=` <div class="post">
-            <h3 ><a href="./post.html?id=1" class="post-title">${title}</a></h3>
+            <h3 >${title}</h3>
             <span id="like" class="post-like"><i class="far fa-star"></i>
             </span>
             <h5 class="post-footer">
-                 <span class="post-by">by: <a class="post-name" href="">${result.name}</a>
+                 <span class="post-by">by: <a class="post-name" href="/public/perfil.html?id=${userId}">${result.name}</a>
                  </span><span class="like"><i class="fas fa-star"></i></span >
                  <span class="total-like">25</span></h5>
             <p class="post-body">${body}</p>

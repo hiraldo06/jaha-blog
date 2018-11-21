@@ -240,7 +240,51 @@ background: linear-gradient(to right, #928DAB, #1F1C2C); /* W3C, IE 10+/ Edge, F
 .align-i-center{
     align-items: center;
 }
-
+.j-center{
+    justify-content: center;
+}
 .perfil-description h5{
     margin-left: 0.5em;
+}
+
+.post-add{
+    position: fixed;
+    top:20%;
+    left:2em;
+    background: rgba(255, 255, 255, 0.413);
+    /* padding: 1em; */
+    /* margin: 1em; */
+    /* width: 4.25em; */
+    /* height: 4.25em;  */
+    border:none;
+    border-radius: 50%;
+    text-decoration: none;
+    color:rgb(33, 82, 33);
+    font-size: 4em;
+    cursor: pointer;
+}
+
+.post-add .btn{
+    text-decoration: none;
+    color:rgb(126, 199, 126);
+    font-size: 4em;
+    
+}
+
+.post-register{
+    margin:5em auto;
+    width:70%;
+}
+
+.post-register .post-textarea{
+    width:95%;
+    max-width:95%;
+    min-width: 95%;
+    height: 18.75em;
+    border:none;
+    border-radius: .5em;
+    background: rgb(218, 211, 211);
+    padding:.5em;
+    margin: 1em;
+
 }

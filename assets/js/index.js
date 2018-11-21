@@ -20,6 +20,7 @@ let logout=()=>{
 
 
 let posts=()=>{
+    document.getElementById("main").innerHTML="";
     let {token}=JSON.parse(localStorage.getItem('token'));
     console.log(token);
     
@@ -62,6 +63,51 @@ let posts=()=>{
     )
 }
 
+let addPostView=()=>{
+    document.getElementById("main").innerHTML="";
+
+    const HTML=`
+    <div class="login-container post-register .title-login">
+        <h3 >Post -ADD </h3>
+        <form action="">
+            <input id="post-title"class="form-control" type="text" placeholder="TITULO">
+            <textarea name="" id="post-area" class="post-textarea" placeholder="Comentarios"></textarea>
+            <div class="action-login">
+                <button type="button" class="btn" id="btn-post">Enviar</button>
+            </div>
+        </form>
+    </div>`;
+    document.getElementById("main").innerHTML=HTML;
+}
+let addPost=()=>{
+    const {token}=JSON.parse(localStorage.getItem("token"));
+    let body=document.getElementById("post-area").value;
+    let title=document.getElementById("post-title").value;
+    let data={
+        title,
+        body
+    }
+    console.log(token);
+    
+    
+    fetch("http://68.183.27.173:8080/post",{
+        method:"POST",
+        body:JSON.stringify(data),
+        headers:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization':`Bearer ${token}`,
+        }
+    }).then(res=>res.json())
+    .then(res=>{
+        let{id}=res;
+        if(id){
+            posts();
+        }
+    })
+}
+
+
 (function(){
     if(!localStorage.getItem('token')){
         window.location='/public/login.html';
@@ -70,5 +116,15 @@ let posts=()=>{
     header();
     posts();
     document.getElementById('logout').addEventListener('click',logout);
+    document.getElementById('post-add').addEventListener("click",addPostView);
+    
+    document.addEventListener("click",()=>{
+        let btnPost=document.getElementById('btn-post')
+        if(btnPost!=null){
+            document.getElementById('btn-post').addEventListener("click",addPost);
+        }
+    });
+    
+    
 })();
 
