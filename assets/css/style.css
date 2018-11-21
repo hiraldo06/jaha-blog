@@ -14,6 +14,7 @@ background: linear-gradient(to right, #928DAB, #1F1C2C); /* W3C, IE 10+/ Edge, F
     justify-content: center;
     /* height: 100%; */
     font-size: 16px;
+    flex-wrap: wrap;
 }
 .login-container{
     width: 40%;
@@ -71,7 +72,7 @@ background: linear-gradient(to right, #928DAB, #1F1C2C); /* W3C, IE 10+/ Edge, F
     width: 80%
 }
 
-.action-login button{
+.btn{
     
     padding: 1em 3em;
     border:none;
@@ -179,8 +180,67 @@ background: linear-gradient(to right, #928DAB, #1F1C2C); /* W3C, IE 10+/ Edge, F
     margin-right: 2em;
 }
 
- .fas-star{
-    font-size: 3em;
-    color:blue;
-    background: blue;
+
+.comment{
+    width:60%;
+}
+.comment-container{
+    margin:1em;
+    background: #fff;
+    border-radius: 1em;
+    padding: 1em;
+}
+
+.comment-container form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.comment-container form textarea{
+    border: none;
+    border-radius: 1em;
+    background: rgb(218, 211, 211);
+    width:90%;
+    padding: 1em;
+    resize: none;
+}
+
+.comment-container .comment-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgb(218, 211, 211);
+    margin: 1em;
+    padding: 1em;
+}
+
+.perfil{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  
+}
+.perfil-avatar{
+    width: 40%;
+    text-align: center;
+}
+
+.perfil-avatar img{
+    width: 100%;
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+}
+.align-i-center{
+    align-items: center;
+}
+
+.perfil-description h5{
+    margin-left: 0.5em;
 }

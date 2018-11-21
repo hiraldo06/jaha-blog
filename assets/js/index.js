@@ -17,10 +17,11 @@ let logout=()=>{
     localStorage.removeItem('token')
 }
 
+
+
 let posts=()=>{
     let {token}=JSON.parse(localStorage.getItem('token'));
     console.log(token);
-    let headers=new Headers();
     
     fetch('http://68.183.27.173:8080/post',{
         method:'GET',
@@ -33,7 +34,8 @@ let posts=()=>{
     .then(res=>res.json())
     .then(res=>{
        res.forEach(element => {
-           fetch(`http://68.183.27.173:8080/users/${element.userId}`,{
+           let {body, id, title,userId}=element;
+           fetch(`http://68.183.27.173:8080/users/${userId}`,{
                method:"GET",
                headers:{
                    "Content-Type":"application/json",
@@ -42,10 +44,11 @@ let posts=()=>{
            }).then(res=>res.json())
            .then(res=>{
                document.getElementById('main').innerHTML+=` <div class="post">
-               <h3 ><span id="like" class="post-like"><i class="far fa-star"></i></span><a href="#" class="post-title">${element.title}</a></h3>
-               <p class="post-body">${element.body.substring(0, 199)}<a href="#">...más</a></p>
+               <h3 ><span id="like" class="post-like"><i class="far fa-star"></i>
+               </span><a href="./post.html?id=${id}" class="post-title">${title}</a></h3>
+               <p class="post-body">${body.substring(0, 199)}<a href="./post.html?id=${id}"> ...más</a></p>
                <h5 class="post-footer">
-                    <span class="post-by">by: <a class="post-name" href="">${res.name}</a>
+                    <span class="post-by">by: <a class="post-name" href="/public/perfil.html?id=${userId}">${res.name}</a>
                     </span><span class="like"><i class="fas fa-star"></i></span >
                     <span class="total-like">25</span></h5>
             </div>`;
