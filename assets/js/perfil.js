@@ -16,6 +16,7 @@ let getUserById=(id,token)=>{
 
 let createPerfil=()=>{
     let params=new URLSearchParams(location.search).get('id');
+    console.log(location);
     let {token}=JSON.parse(localStorage.getItem('token'));
     getUserById(params,token).then(res=>{
         let {name,email}=res;

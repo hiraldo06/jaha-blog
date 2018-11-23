@@ -49,11 +49,14 @@ let getCommentByPostId=(id)=>{
     .then(res=>{
         console.log(res);
         res.forEach(element => {
-            let {body}=element;
-            document.getElementById("comment").innerHTML +=`<div class="comment-text">
-            <p>${body}hola</p>
-            <span>by: <a href="/public/perfil.html?id=1">Juan Trucupe</a></span>
-        </div>`
+            let {body,userId}=element;
+            getUserById(userId,token).then(res2=>{
+                document.getElementById("comment").innerHTML +=`<div class="comment-text">
+                <p>${body}hola</p>
+                <span>by: <a href="/public/perfil.html?id=1">${res2.name}</a></span>
+            </div>`
+            })
+           
         });
       
     }).catch(err=>console.log(err));
@@ -73,9 +76,50 @@ let getUserById=(id,token)=>{
           
 }
 
+let addPost=()=>{
+    let params = new URLSearchParams(location.search);
+    let body=document.getElementById("post-comment").value;
+    if(body.length<=3){
+        console.log('error');
+        
+        document.getElementById("comment-info").style.visibility="visible";
+        return;
+    }
+    document.getElementById("comment-info").style.visibility="hidden";
+    const {token}=JSON.parse(localStorage.getItem('token'));
+    let data={
+        body
+    }
+    console.log(params.get('id'),data,comment,token);
+    
+    fetch(`http://68.183.27.173:8080/post/${params.get('id')}/comment`,
+        {
+            method:"POST",
+            body:JSON.stringify(data),
+            headers:{
+                "Accept":"application/json",
+                "Content-Type":"application/json",
+                "Authorization":`Bearer ${token}`
+            }
+        }
+    ).then(res=>res.json())
+    .then(res=>{
+            let {body,userId}=res;
+            getUserById(userId,token).then(res2=>{
+                document.getElementById("comment").innerHTML +=`
+                <div class="comment-text">
+                <p>${body}</p>
+                <span>by: <a href="/public/perfil.html?id=1">${res2.name}</a></span>
+            </div>`
+            });
+            document.getElementById("post-comment").value="";
+        })
+    
+}
 
 (function(){
     getPostById();
+    document.getElementById("btn-comment").addEventListener("click",addPost);
 })();
 
 // export default getUserById;

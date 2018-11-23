@@ -1,11 +1,12 @@
 {
   "name": "practica",
   "version": "1.0.0",
-  "description": "Blog clase java script",
-  "main": "server.js",
+  "description": "JavaScript Blog",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -13,7 +14,7 @@
   },
   "keywords": [
     "Javascript",
-    "ITLA"
+    "itla"
   ],
   "author": "JAHA",
   "license": "ISC",
@@ -21,7 +22,9 @@
     "url": "https://github.com/hiraldo06/jaha-blog/issues"
   },
   "homepage": "https://github.com/hiraldo06/jaha-blog#readme",
+  "devDependencies": {},
   "dependencies": {
-    "feather-icons": "^4.9.0"
+    "webpack": "^4.26.0",
+    "webpack-cli": "^3.1.2"
   }
 }
