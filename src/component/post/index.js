@@ -8,7 +8,7 @@ import {getFecha} from '../../helpers';
 
 //crea el componente para los post
 let postComponent=({body, id, title,userId,
-    liked,likes,views,createdAt,userName, tags},{name})=>{
+    liked,likes,views,createdAt,userName, tags})=>{
     return `<div class="post">
                 <span hidden id="liked-${id}">${liked}</span>
                <div>
@@ -43,12 +43,10 @@ let postsComponentList=()=>{
     document.getElementById("main").innerHTML="";
     let {token}=JSON.parse(localStorage.getItem('token'));
     postList().then(res=>{
-        res.forEach(element => {
-            getUserById(element.userId,token).then(res2=>{
-                console.log(res2.name, element);
-                document.getElementById('main').innerHTML+=postComponent(element,res2);
-            })
+        let post= Object.keys(res).map(index=>{
+           return postComponent(res[index]);
         });
+        document.getElementById('main').innerHTML=post;
     })
     .catch(err=>console.log(err,'error')
     )
@@ -62,7 +60,7 @@ let addPostView=()=>{
     <div class="login-container post-register .title-login">
         <h3 >Post -ADD </h3>
         <form action="">
-            <input id="post-title1"class="form-control" type="text" placeholder="TITULO">
+            <input id="post-title"class="form-control" type="text" placeholder="TITULO">
             <textarea name="" id="post-area" class="post-textarea" placeholder="Comentarios"></textarea>
             <div class="tags" >
                 <input class="form-control" type="text" id="tarea" placeholder="Categoria">

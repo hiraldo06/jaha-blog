@@ -1,8 +1,5 @@
 import {headers,url} from '../../helpers/http';
 let postList=()=>{
-    let {token}=JSON.parse(localStorage.getItem('token'));
-    console.log(token);
-
     return fetch(`${url}/post`,{
         method:'GET',
         headers
@@ -15,12 +12,13 @@ let postList=()=>{
 
 
 let postAdd=(tags)=>{
-   
+    console.log("post add");
     let body=document.getElementById("post-area").value;
     let title=document.getElementById("post-title").value;
-    console.log("post add");
     
-    if(body.lenght<20||title.lenght<3||tags.lenght<1){
+    console.log("size body: ",String(body).length," title :",title.length," tags : ",tags.length);
+    
+    if(body.length<100 || title.length<3 ||tags.length<1){
         
         return;
     }
@@ -29,16 +27,18 @@ let postAdd=(tags)=>{
         body,
         tags
     }
-    console.log(token, "data:", data);
+    console.log( "data:", data);
     
     
    return fetch(`${url}/post`,{
         method:"POST",
-        body:JSON.stringify(datas),
+        body:JSON.stringify(data),
         headers
-    }).then(res=>res.json())
-    .then(res=>{
-        return res;
+    }).then(res=>{
+        if(res.ok){
+            res.json()
+        }  
+        throw Error("Error al agregar post"); 
     })
 }
 //le da like a los post

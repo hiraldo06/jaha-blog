@@ -1,4 +1,6 @@
-const url="http://localhost:8080";
+// const url="http://localhost:8080";
+const url=`http://68.183.27.173:8080`;
+
 let login=()=>{
     let email = document.getElementById('email').value;
     let password=document.getElementById('password').value;
