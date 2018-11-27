@@ -91,6 +91,11 @@ background: linear-gradient(to right, #928DAB, #1F1C2C); /* W3C, IE 10+/ Edge, F
     font-weight: bold;
     text-transform: uppercase;
 }
+.btn-primary{
+   
+    background: rgb(51, 180, 69);
+   
+}
 
 .action-login button:hover{
     cursor: pointer;
@@ -164,6 +169,11 @@ background: linear-gradient(to right, #928DAB, #1F1C2C); /* W3C, IE 10+/ Edge, F
     margin-right: 2em;
     font-size: 1.2em;
     color:rgb(172, 99, 111);
+    display: flex;
+    flex-direction: row;
+}
+.like-icon{
+    margin-right: 1em;
 }
 .post-body{
     margin: 1.5em;
@@ -175,18 +185,28 @@ background: linear-gradient(to right, #928DAB, #1F1C2C); /* W3C, IE 10+/ Edge, F
     flex-wrap: wrap;
 }
 
+.post-footer .post-by,.post-fecha{
+    font-size: .8em;
+}
 .post-footer .post-by{
-    width: 50%;
+    width: 51.29%;
+   margin-left: 0.5em;
 }
 
 .post-footer .like{
-    width: 45%;
+    /* width: 21.5%; */
     text-align: end;
-    margin-right: 2em;
+    margin-right: .5em;
 }
+/* .post-footer .view{
+    width: 21.5%;
+    text-align: end;
+    margin-right: .5em;
+} */
 
-.post-footer .total-like{
+.post-footer .total{
     margin-right: 2em;
+    margin-left: 2em;
 }
 
 
@@ -273,6 +293,7 @@ background: linear-gradient(to right, #928DAB, #1F1C2C); /* W3C, IE 10+/ Edge, F
     cursor: pointer;
 }
 
+
 .post-add .btn{
     text-decoration: none;
     color:rgb(126, 199, 126);
@@ -311,4 +332,47 @@ background: linear-gradient(to right, #928DAB, #1F1C2C); /* W3C, IE 10+/ Edge, F
     border: none;
     border-radius: .5em;
     text-align: center;
+}
+
+.no-pointer{
+    cursor: auto;
+}
+
+.categorias{
+    width: 80%;
+    height: 7em;
+}
+
+.tags-list{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+.tags-li{
+    margin:0;
+    margin-top: .5em;
+    background: rgb(218, 211, 211);
+    padding: .5em;
+    padding-right: 0;
+    border: none;
+    border-radius: 0.5em;
+}
+.tags-delete{
+    border-left: .1em solid black;
+    font-weight: bold;
+    padding: .5em;
+    background: rgba(194, 44, 18, 0.783);
+    width: 0.1em;
+    border-top-right-radius: .5em;
+    border-bottom-right-radius: .5em;
+    cursor: pointer;
+}
+
+.tags-post{
+    margin: .5em;
+    color:rgb(163, 160, 160);
+    text-transform: uppercase;
 }

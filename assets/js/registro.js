@@ -1,3 +1,5 @@
+// const url="http://localhost:8080";
+const url=`http://68.183.27.173:8080`;
 let registrar=()=>{
     let name=document.getElementById("nombre").value;
     let email=document.getElementById("email").value;
@@ -14,7 +16,10 @@ let registrar=()=>{
         email,
         password
     } 
-    fetch('http://68.183.27.173:8080/register',{
+
+    console.log(data);
+    
+    fetch(`${url}/register`,{
         method:'POST',
         body:JSON.stringify(data),
         headers:{'Content-Type':'application/json'},
@@ -22,6 +27,8 @@ let registrar=()=>{
     }).
     then(res=>res.json())
     .then(res=>{
+        console.log("res", res);
+        
         if(res.id){
             window.location='/public/login.html';   
         }

@@ -1,3 +1,4 @@
+const url="http://localhost:8080";
 let login=()=>{
     let email = document.getElementById('email').value;
     let password=document.getElementById('password').value;
@@ -5,7 +6,7 @@ let login=()=>{
         email,
         password
     }
-    fetch("http://68.183.27.173:8080/login",{
+    fetch(`${url}/login`,{
         method:"POST",
         body:JSON.stringify(data),
         headers:{"Content-Type":'application/json'}
