@@ -6,6 +6,7 @@ import {getPostById,addComment} from './component/post/postDetails';
 import {createPerfil} from './component/perfil';
 import {logout} from './connect/security';
 import {addTags,borrarTags} from './component/post/categorias';
+import {getUsers} from './component/user';
 
 let tags=[];
 let vistaList=true;
@@ -29,6 +30,10 @@ let header=()=>{
         getPostById();
         document.getElementById("btn-comment").addEventListener("click",addComment);
     }
+
+    if(location.pathname==="/public/usuarios.html"){
+        getUsers();
+    }
     console.log(location)
 
     //listener index
@@ -38,46 +43,6 @@ let header=()=>{
         //eventos al boton de agregar elementos
         document.getElementById('post-add').addEventListener("click",addPostView);
         postsComponentList();
-        
-       
-       
-    //    //agregando tags
-    //    if(typeof document.getElementById('tags')!=null){
-    //         document.getElementById("tags").addEventListener('click',addTags(tags));
-    //         //    //borra tags
-    //         if(e.target.nodeName==="SPAN"){
-                
-    //             borrarTags(e.target.id,tags);
-    //         }
-    //     }
-    //document.getElementById('btn-post').addEventListener("click",addPostComponent(tags));
-        // document.addEventListener("click",(e)=>{
-        //     // console.log(e);
-            
-        //     let id= String(e.target.id).length===0?e.target.farthestViewportElement.id:e.target.id;
-        //     // console.log("id: ",id);
-            
-        //     if(id){
-        //        let result= String(id).split("-");
-               
-        //        if(result[0]==="like"){
-        //             postLikeView(result[1]);
-        //        }
-        //     }
-            
-        // });
-        
-        // document.addEventListener("click",(e)=>{
-        //     let btnPost=typeof document.getElementById('btn-post')
-        //     if(btnPost!=null){
-        //         document.getElementById('btn-post').addEventListener("click",addPostComponent(tags)); 
-                
-        //     }   
-            
-        // });
-
-        
-        
         document.addEventListener('click',function(e){
             console.log("estamos aqui",e);
             
@@ -95,6 +60,17 @@ let header=()=>{
            if(e.target.id==="btn-post"){
             document.getElementById('btn-post').addEventListener("click",addPostComponent(tags)); 
            }
+           //dando like
+           if(e.target.nodeName==="BUTTON"){
+                let result= String(e.target.id).split("-");
+               
+                if(result[0]==="like"){
+                    postLikeView(result[2]);
+                    console.log(result[2]);
+                    
+                }
+           }
+
         })
        
     }

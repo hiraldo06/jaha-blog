@@ -167,13 +167,15 @@ background: linear-gradient(to right, #928DAB, #1F1C2C); /* W3C, IE 10+/ Edge, F
 }
 .post-like{
     margin-right: 2em;
-    font-size: 1.2em;
-    color:rgb(172, 99, 111);
     display: flex;
     flex-direction: row;
 }
 .like-icon{
-    margin-right: 1em;
+    font-size: 1.2em;
+    color:rgb(172, 99, 111);
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 .post-body{
     margin: 1.5em;
@@ -271,6 +273,9 @@ background: linear-gradient(to right, #928DAB, #1F1C2C); /* W3C, IE 10+/ Edge, F
 }
 .j-center{
     justify-content: center;
+}
+.f-wrap{
+    flex-wrap: wrap;
 }
 .perfil-description h5{
     margin-left: 0.5em;
@@ -375,4 +380,45 @@ background: linear-gradient(to right, #928DAB, #1F1C2C); /* W3C, IE 10+/ Edge, F
     margin: .5em;
     color:rgb(163, 160, 160);
     text-transform: uppercase;
+}
+
+.usuarios-container{
+    width: 40%;
+    /* text-align: center; */
+    background: rgb(163, 160, 160);
+    margin: 1em;
+    border: none;
+    border-radius: .5em;
+}
+.usuarios-container img{
+    width: 100%;
+}
+.usuarios-figure{
+    background: #fff; 
+    width: 100%;
+    margin: 0;
+    text-align: center;
+}
+.usuarios-container .description{
+    width: 100%;
+    padding: .5em;
+    color:#fff;
+}
+
+.c-violet{
+    color:  rgb(83, 64, 175);
+}
+.c-green{
+    color:rgb(10, 82, 10);
+}
+.c-blue{
+    color: blue;
+}
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.d-none{
+    text-decoration: none;
 }

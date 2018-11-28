@@ -1,5 +1,7 @@
 import {headers,url} from '../../helpers/http';
-let postList=()=>{
+
+//lista los post
+const postList=()=>{
     return fetch(`${url}/post`,{
         method:'GET',
         headers
@@ -8,10 +10,24 @@ let postList=()=>{
     .then(res=>{return res});
 }
 
+//listar post by user id
+const postByUserId=(userId)=>{
+   return fetch(`${url}/post?userId=${userId}`,
+        {
+            method:"GET",
+            headers
+        }
+    ).then(res=>{
+        if(res.ok){
+            return res.json();
+        }
+        throw Error("error listando post by id");
+    });
+}
 
 
-
-let postAdd=(tags)=>{
+//agrega los post
+const postAdd=(tags)=>{
     console.log("post add");
     let body=document.getElementById("post-area").value;
     let title=document.getElementById("post-title").value;
@@ -42,7 +58,7 @@ let postAdd=(tags)=>{
     })
 }
 //le da like a los post
-let postLike=(id)=>{
+const postLike=(id)=>{
     return fetch(`${url}/post/${id}/like`,{
         method:'PUT',
         headers
@@ -51,7 +67,7 @@ let postLike=(id)=>{
 }
 
 //quita el like a los post
-let postLikeDelete=(id)=>{
+const postLikeDelete=(id)=>{
     return fetch(`${url}/post/${id}/like`,{
         method:'DELETE',
         headers
@@ -60,7 +76,7 @@ let postLikeDelete=(id)=>{
 }
 
 //get pos by id
-let postGetByID=()=>{
+const postGetByID=()=>{
     let params = new URLSearchParams(location.search);
     return fetch(`${url}/post/${params.get('id')}`,{
         method:"GET",
@@ -77,5 +93,5 @@ let postGetByID=()=>{
 }
 
 
-export {postList,postAdd,postLike,postLikeDelete,postGetByID};;
+export {postList,postAdd,postLike,postLikeDelete,postGetByID, postByUserId};;
 

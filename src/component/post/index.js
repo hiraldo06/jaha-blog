@@ -1,21 +1,20 @@
 
-import {postList,postAdd,postLike,postLikeDelete}from '../../connect/post/'
-import {getUserById} from '../../connect/user';
+import {postList,postAdd,postLike,postLikeDelete}from '../../connect/post/';
 import {getFecha} from '../../helpers';
 
 
 
 
 //crea el componente para los post
-let postComponent=({body, id, title,userId,
-    liked,likes,views,createdAt,userName, tags})=>{
+const postComponent=({body, id, title,userId,
+    liked,likes,views,createdAt,userName,tags,comments})=>{
     return `<div class="post">
                 <span hidden id="liked-${id}">${liked}</span>
                <div>
                 <div class="post-like">
-                    <div id="like-d-${id}" class="like-icon">
+                    <button type="button" id="like-d-${id}" class="like-icon">
                         <i id="like-${id}" class="li ${Boolean(liked)?"fas":"far"} fa-star"></i>
-                    </div>
+                    </button>
                     <h3>
                         <a href="./post.html?id=${id}" class="post-title">${title}</a>
                     </h3>
@@ -27,10 +26,9 @@ let postComponent=({body, id, title,userId,
                     <span class="post-fecha">${getFecha(createdAt)}</span>
                     <span class="post-by">by: <a class="post-name" href="/public/perfil.html?id=${userId}">${userName}</a>
                     </span>
-                    <spam class="like"><i class="far fa-eye"></i></spam>
-                    <span class="total">${views}</span>
-                    <span class="like"><i class="fas fa-star"></i></span >
-                    <span class="total">${likes}</span>
+                    <spam class="like"><i class="far fa-eye"></i>     ${views}</spam>
+                    <span class="like"><i class="fas fa-star"></i>     ${likes}</span >
+                    <span class="like"><i class="far fa-comments"></i>     ${comments}</span >
                 </div>
                 <div class="post-footer">
                     ${tags}
@@ -39,23 +37,20 @@ let postComponent=({body, id, title,userId,
 }
 
 //llama los connect del post y el componente post
-let postsComponentList=()=>{
+const postsComponentList=()=>{
     document.getElementById("main").innerHTML="";
     let {token}=JSON.parse(localStorage.getItem('token'));
     postList().then(res=>{
         let post= Object.keys(res).map(index=>{
-           return postComponent(res[index]);
+            document.getElementById('main').innerHTML+= postComponent(res[index]);
         });
-        document.getElementById('main').innerHTML=post;
     })
     .catch(err=>console.log(err,'error')
     )
 }
 
 //vista de crear post
-let addPostView=()=>{
-   
-
+const addPostView=()=>{
     let HTML=`
     <div class="login-container post-register .title-login">
         <h3 >Post -ADD </h3>
@@ -81,12 +76,9 @@ let addPostView=()=>{
      document.getElementById("main").innerHTML=HTML;
 }
 
-let addPostComponent=(tags)=>{
-    console.log("addpost component");
-    
-    postAdd(tags).then(res=>{
-        
-        
+//function de crear post
+const addPostComponent=(tags)=>{
+    postAdd(tags).then(res=>{    
         let{id}=res;
         if(id){
            postsComponentList();
@@ -94,11 +86,8 @@ let addPostComponent=(tags)=>{
     }).catch(err=>console.log(err));
 }
 
-//llama al connect postAdd para crear los post
-
-
-
-let postLikeView=(id)=>{
+// likes
+const postLikeView=(id)=>{
     let liked=document.getElementById(`liked-${id}`);
     let element=document.getElementById(`like-d-${id}`);
     

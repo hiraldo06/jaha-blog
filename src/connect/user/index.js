@@ -1,12 +1,23 @@
-let getUserById=(userId,token)=>{
-    return fetch(`http://68.183.27.173:8080/users/${userId}`,{
+import {headers,url} from '../../helpers/http';
+
+const getUserById=(userId)=>{
+    return fetch(`${url}/users/${userId}`,{
         method:"GET",
-        headers:{
-            "Content-Type":"application/json",
-            "Authorization":`Bearer ${token}`
-        }
+        headers
     }).then(res=>res.json())
     .then(res=>{return res})
 }
 
-export {getUserById};
+const usersGet=()=>{
+    return fetch(`${url}/users`,{
+        method:"GET",
+        headers
+    }).then(res=>{
+        if(res.ok){
+            return res.json();
+        }
+        throw Error("error en el getUsers");
+    })
+}
+
+export {getUserById,usersGet};

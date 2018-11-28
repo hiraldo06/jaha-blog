@@ -1,16 +1,10 @@
+import{url,headers}from "../../helpers/http";
 
-let commentGetByPostId=(id,token)=>{
-    //     let {token}=JSON.parse(localStorage.getItem('token'));
-    let url=`http://68.183.27.173:8080/post/${id}/comment`;
-   
-    console.log("id comment:",id);
-    
-    return fetch(url,{
+//busca los comment by post id
+const commentGetByPostId=(id)=>{
+    return fetch(`${url}/post/${id}/comment`,{
         method:"GET",
-        headers:{
-            'Content-Type': 'application/json',
-            'Authorization':`Bearer ${token}`,
-        }
+        headers
     })
     .then(res=>{
         if(res.ok){
@@ -21,17 +15,12 @@ let commentGetByPostId=(id,token)=>{
     
 }
 
-let commentAdd=(params,data,token)=>{
-
-    return fetch(`http://68.183.27.173:8080/post/${params}/comment`,
+const commentAdd=(params,data)=>{
+    return fetch(`${url}/post/${params}/comment`,
             {
                 method:"POST",
                 body:JSON.stringify(data),
-                headers:{
-                    "Accept":"application/json",
-                    "Content-Type":"application/json",
-                    "Authorization":`Bearer ${token}`
-                }
+                headers
             }
         ).then(res=>{
             if(res.ok){
