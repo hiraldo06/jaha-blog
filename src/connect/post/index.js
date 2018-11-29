@@ -11,18 +11,17 @@ const postList=()=>{
 }
 
 //listar post by user id
-const postByUserId=(userId)=>{
-   return fetch(`${url}/post?userId=${userId}`,
+const postByUserId=async(userId)=>{
+   let result =await fetch(`${url}/post?userId=${userId}`,
         {
             method:"GET",
             headers
         }
-    ).then(res=>{
-        if(res.ok){
-            return res.json();
-        }
+    );
+    if(!result.ok){
         throw Error("error listando post by id");
-    });
+    }
+   return result.json();
 }
 
 
