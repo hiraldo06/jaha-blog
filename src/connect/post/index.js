@@ -43,18 +43,18 @@ const postAdd=(tags)=>{
         body,
         tags
     }
-    console.log( "data:", data);
-    
     
    return fetch(`${url}/post`,{
         method:"POST",
         body:JSON.stringify(data),
         headers
     }).then(res=>{
-        if(res.ok){
-            res.json()
+        console.log(res.status);
+        
+        if(res.status===201){
+            return res.json()
         }  
-        throw Error("Error al agregar post"); 
+        throw new Error("Error al agregar post"); 
     })
 }
 //le da like a los post

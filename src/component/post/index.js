@@ -39,9 +39,8 @@ const postComponent=({body, id, title,userId,
 //llama los connect del post y el componente post
 const postsComponentList=()=>{
     document.getElementById("main").innerHTML="";
-    let {token}=JSON.parse(localStorage.getItem('token'));
     postList().then(res=>{
-        let post= Object.keys(res).map(index=>{
+        Object.keys(res).map(index=>{
             document.getElementById('main').innerHTML+= postComponent(res[index]);
         });
     })
