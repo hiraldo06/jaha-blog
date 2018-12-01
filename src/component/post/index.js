@@ -1,13 +1,13 @@
 
 import {postList,postAdd,postLike,postLikeDelete}from '../../connect/post/';
-import {getFecha} from '../../helpers';
-
+import {getFechaMoment} from '../../helpers';
 
 
 
 //crea el componente para los post
 const postComponent=({body, id, title,userId,
     liked,likes,views,createdAt,userName,tags,comments})=>{
+        
     return `<div class="post">
                 <span hidden id="liked-${id}">${liked}</span>
                <div>
@@ -23,15 +23,18 @@ const postComponent=({body, id, title,userId,
                </div>
                <p class="post-body">${body.substring(0, 199)}<a href="./post.html?id=${id}"> ...más</a></p>
                <div class="post-footer">
-                    <span class="post-fecha">${getFecha(createdAt)}</span>
+                    <span class="post-fecha">${getFechaMoment(createdAt)}, </span>
                     <span class="post-by">by: <a class="post-name" href="/public/perfil.html?id=${userId}">${userName}</a>
                     </span>
                     <spam class="like"><i class="far fa-eye"></i>     ${views}</spam>
                     <span class="like"><i class="fas fa-star"></i>     ${likes}</span >
-                    <span class="like"><i class="far fa-comments"></i>     ${comments}</span >
+                    <a href="/public/post.html?id=${id}" class="like d-none"><i class="far fa-comments"></i>     ${comments}</a >
                 </div>
                 <div class="post-footer">
-                    ${tags}
+                    ${Object.keys(tags).map(index=>{
+                        return `<a href="/public/index.html?tags=${tags[index]}">${tags[index]}</a>`
+                    })}
+                  
                 </div>
             </div>`
 }
@@ -46,6 +49,24 @@ const postsComponentList=()=>{
     })
     .catch(err=>console.log(err,'error')
     )
+}
+
+const postsListComponentByTags=async(tags)=>{
+    let posts=await postList();
+    Object.keys(posts).map(index=>{
+        let result=posts[index]["tags"].find(e=>{
+            return String(e).toLocaleUpperCase()===String(tags).toUpperCase()
+        });
+        if(result!=undefined){
+            document.getElementById('main').innerHTML+= postComponent(posts[index]);
+        }
+        
+    })
+        
+    
+    
+    
+    
 }
 
 //vista de crear post
@@ -116,4 +137,4 @@ const postLikeView=(id)=>{
     }
 }
 
-export {postsComponentList,addPostView,addPostComponent,postLikeView};
+export {postsComponentList,addPostView,addPostComponent,postLikeView,postsListComponentByTags};

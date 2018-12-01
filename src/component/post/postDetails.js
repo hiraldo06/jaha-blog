@@ -2,7 +2,7 @@ import {params} from '../../helpers/http';
 import {postGetByID} from '../../connect/post';
 import {commentGetByPostId,commentAdd} from '../../connect/post/commentConnect';
 import {getUserById} from '../../connect/user';
-import {getFecha} from '../../helpers';
+import {getFechaMoment} from '../../helpers';
 
 const postComponent=({title,body,userId,liked,id,createdAt,userName,likes,views,comments})=>{
     return ` 
@@ -18,7 +18,7 @@ const postComponent=({title,body,userId,liked,id,createdAt,userName,likes,views,
             </div>
        </div>
        <div class="post-footer">
-            <span class="post-fecha">${getFecha(createdAt)}</span>
+            <span class="post-fecha">${getFechaMoment(createdAt)}</span>
             <span class="post-by">by: <a class="post-name" href="/public/perfil.html?id=${userId}">${userName}</a>
             </span>
             <spam class="like"><i class="far fa-eye"></i>      ${views}</spam>

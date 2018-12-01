@@ -420,5 +420,7 @@ background: linear-gradient(to right, #928DAB, #1F1C2C); /* W3C, IE 10+/ Edge, F
 }
 
 .d-none{
-    text-decoration: none;
+    text-decoration:none;
+    color:black;
+    cursor: pointer;
 }

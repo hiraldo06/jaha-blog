@@ -1,5 +1,5 @@
 import {postsComponentList,
-        addPostView,addPostComponent,postLikeView
+        addPostView,addPostComponent,postLikeView,postsListComponentByTags
     } 
 from './component/post';
 import {getPostById,addComment} from './component/post/postDetails';
@@ -42,7 +42,16 @@ let header=()=>{
         document.getElementById('logout').addEventListener('click',logout);
         //eventos al boton de agregar elementos
         document.getElementById('post-add').addEventListener("click",addPostView);
-        postsComponentList();
+        let params = new URLSearchParams(location.search); 
+        if(!params.get("tags")){
+            postsComponentList();
+        }else{
+            postsListComponentByTags(params.get("tags")).catch(err=>{
+                console.log(err);
+                
+            })
+        }
+        
         document.addEventListener('click',function(e){
             console.log("estamos aqui",e);
             

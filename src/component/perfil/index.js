@@ -1,14 +1,15 @@
 import {getUserById} from '../../connect/user';
 import {postByUserId} from '../../connect/post';
-import {getFecha} from '../../helpers';
+import {getFechaMoment} from '../../helpers';
 import {token} from '../../helpers/http';
 
 const perfilComponent=({name,email,createdAt,posts})=>{
+    
     return ` 
     <figure class="perfil-avatar">
         <img src="/assets/img/avatar.png" alt="${name}">
         <figcaption>${name}</figcaption>
-        <figcaption>Fecha Creado : ${getFecha(createdAt)}</figcaption>
+        <figcaption>Fecha De Registro : ${getFechaMoment(createdAt)}</figcaption>
     </figure>
     <div class="perfil-description flex-row align-i-center">
         <h4>Total de Post:</h4> <h5>${posts}</h5>

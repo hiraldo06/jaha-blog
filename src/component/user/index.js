@@ -1,5 +1,5 @@
 import {usersGet} from '../../connect/user';
-import {getFecha} from '../../helpers';
+import {getFechaMoment} from '../../helpers';
 
 const usersComponent=({name,createdAt,email,posts,id})=>{
     return `
@@ -8,7 +8,7 @@ const usersComponent=({name,createdAt,email,posts,id})=>{
             <figure class="usuarios-figure" >
                 <img src="/assets/img/avatar.png" alt="${name}">
                 <figcaption>${name}</figcaption>
-                <figcaption>${getFecha(createdAt)} </figcaption>
+                <figcaption>${getFechaMoment(createdAt)} </figcaption>
             </figure>
         </a>
         <div class="description flex-column">

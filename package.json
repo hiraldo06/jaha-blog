@@ -24,6 +24,7 @@
   "homepage": "https://github.com/hiraldo06/jaha-blog#readme",
   "devDependencies": {},
   "dependencies": {
+    "moment": "^2.22.2",
     "webpack": "^4.26.0",
     "webpack-cli": "^3.1.2"
   }
