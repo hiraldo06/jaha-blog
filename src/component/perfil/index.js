@@ -22,7 +22,7 @@ const perfilComponent=({name,email,createdAt,posts})=>{
 
 const perfilComponentPostPublic=({id,title,likes,views,comments,tags})=>{
    return `<div class="comment-text">
-                <a href="/public/post.html?id=${id}"><h3>${title}</h3></a>
+                <a href="/post?id=${id}"><h3>${title}</h3></a>
                 <div class="">
                     <span><i class="fas fa-star"></i>  ${likes}</span>
                     <span><i class="far fa-eye"></i>   ${views}</span>

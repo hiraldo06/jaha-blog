@@ -2,16 +2,19 @@ import {params} from '../../helpers/http';
 import {postGetByID} from '../../connect/post';
 import {commentGetByPostId,commentAdd} from '../../connect/post/commentConnect';
 import {getUserById} from '../../connect/user';
-import {getFechaMoment} from '../../helpers';
+import {getFechaMoment,userFind,usersOnline} from '../../helpers';
+
 
 const postComponent=({title,body,userId,liked,id,createdAt,userName,likes,views,comments})=>{
+    
     return ` 
         <div class="post">
+        <span hidden id="liked-${id}">${liked}</span>
         <div>
             <div class="post-like">
-                <div id="like-d-${id}" class="like-icon">
-                    <i id="like-${id}" class="li ${Boolean(liked)?"fas":"far"} fa-star"></i>
-                </div>
+            <span data="${id}"  id="like-d-${id}" class="like-icon">
+                <i data="${id}" id="like-${id}" class="li ${Boolean(liked)?"fas":"far"} fa-star"></i>
+            </span>
                 <h3 class="post-title no-pointer">
                     ${title}
                 </h3>
@@ -19,21 +22,22 @@ const postComponent=({title,body,userId,liked,id,createdAt,userName,likes,views,
        </div>
        <div class="post-footer">
             <span class="post-fecha">${getFechaMoment(createdAt)}</span>
-            <span class="post-by">by: <a class="post-name" href="/public/perfil.html?id=${userId}">${userName}</a>
+            <span class="post-by">by: <a name="ws-online-${userId}" class="post-name ${userFind(usersOnline,userId)?"ws-online":"ws-offline"}" href="/perfil?id=${userId}">${userName}  
+            </a>
             </span>
-            <spam class="like"><i class="far fa-eye"></i>      ${views}</spam>
-            <span class="like"><i class="fas fa-star"></i>     ${likes}</span>
-            <span><i class="far fa-comments"></i>   ${comments}</span>
+            <spam  class="like"><i class="far fa-eye"></i>     <span id="ws-view-${id}">${views}</span></spam>
+            <span  class="like"><i class="fas fa-star"></i>     <span id="ws-like-${id}">${likes}</span></span >
+            <span><i class="far fa-comments"></i>   <span id="ws-comment-${id}">${comments}</span></span>
         </div>
             <p class="post-body">${body}</p>
             
          </div>`;
 }
 
-const commentComponent=({body,userName})=>{
+const commentComponent=({body,userName,userId,commentBody})=>{
     return `<div class="comment-text">
-                <p>${body}</p>
-                <span>by: <a href="/public/perfil.html?id=1">${userName}</a></span>
+                <p>${body||commentBody}</p>
+                <span>by: <a name="ws-online-${userId}" class="post-name ${userFind(usersOnline,userId)?"ws-online":"ws-offline"}" href="/perfil?id=${userId}">${userName}</a></span>
             </div>`
 }
 
@@ -74,11 +78,15 @@ const addComment=()=>{
         body
     }
     commentAdd(params.get('id'),data).then(res=>{  
-            getUserById(res.userId).then(res2=>{
-                document.getElementById("comment").innerHTML +=commentComponent(res,res2);
-            });
+            // getUserById(res.userId).then(res2=>{
+            //     document.getElementById("comment").innerHTML +=commentComponent(res,res2);
+            // });
+            if(res.userId){
+                console.log("comentario creado");
+                
+            }
             document.getElementById("post-comment").value="";
         })
 }
 
-export {getPostById,addComment};
+export {getPostById,addComment, commentComponent};

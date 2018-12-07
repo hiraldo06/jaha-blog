@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "start": "nodemon server.js webpack-dev-server --mode development --open --port 3001",
     "build": "webpack"
   },
   "repository": {
@@ -22,8 +22,11 @@
     "url": "https://github.com/hiraldo06/jaha-blog/issues"
   },
   "homepage": "https://github.com/hiraldo06/jaha-blog#readme",
-  "devDependencies": {},
+  "devDependencies": {
+    "webpack-dev-server": "^3.1.10"
+  },
   "dependencies": {
+    "express": "^4.16.4",
     "moment": "^2.22.2",
     "webpack": "^4.26.0",
     "webpack-cli": "^3.1.2"

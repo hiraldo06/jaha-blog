@@ -21,7 +21,7 @@ let login=()=>{
             }else{
                 document.getElementById("error-login").style.display='none';
                 localStorage.setItem('token',JSON.stringify(res));
-                window.location='/public/index.html';
+                window.location='/';
             }
             console.log(res);
             

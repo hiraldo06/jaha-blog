@@ -1,10 +1,10 @@
 import {usersGet} from '../../connect/user';
-import {getFechaMoment} from '../../helpers';
+import {getFechaMoment,userFind,usersOnline} from '../../helpers';
 
 const usersComponent=({name,createdAt,email,posts,id})=>{
     return `
     <div class="usuarios-container flex-row j-center f-wrap">
-        <a href="/public/perfil.html?id=${id}">
+        <a name="ws-online-${id}" class="post-name ${userFind(usersOnline,id)?"ws-online":"ws-offline"}" href="/perfil?id=${id}">
             <figure class="usuarios-figure" >
                 <img src="/assets/img/avatar.png" alt="${name}">
                 <figcaption>${name}</figcaption>

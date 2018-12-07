@@ -1,6 +1,7 @@
 
 import {postList,postAdd,postLike,postLikeDelete}from '../../connect/post/';
-import {getFechaMoment} from '../../helpers';
+import {getFechaMoment,userFind,usersOnline} from '../../helpers';
+
 
 
 
@@ -8,31 +9,34 @@ import {getFechaMoment} from '../../helpers';
 const postComponent=({body, id, title,userId,
     liked,likes,views,createdAt,userName,tags,comments})=>{
         
+          
     return `<div class="post">
                 <span hidden id="liked-${id}">${liked}</span>
                <div>
                 <div class="post-like">
-                    <button type="button" id="like-d-${id}" class="like-icon">
-                        <i id="like-${id}" class="li ${Boolean(liked)?"fas":"far"} fa-star"></i>
-                    </button>
+                    <span data="${id}"  id="like-d-${id}" class="like-icon">
+                        <i data="${id}" id="like-${id}" class="li ${Boolean(liked)?"fas":"far"} fa-star"></i>
+                    </span>
                     <h3>
-                        <a href="./post.html?id=${id}" class="post-title">${title}</a>
+                        <a href="/post?id=${id}" class="post-title">${title}</a>
                     </h3>
                     
                 </div>
                </div>
-               <p class="post-body">${body.substring(0, 199)}<a href="./post.html?id=${id}"> ...más</a></p>
+               <p class="post-body">${body.substring(0, 199)}<a href="/post?id=${id}"> ...más</a></p>
                <div class="post-footer">
                     <span class="post-fecha">${getFechaMoment(createdAt)}, </span>
-                    <span class="post-by">by: <a class="post-name" href="/public/perfil.html?id=${userId}">${userName}</a>
+                    <span class="post-by">by: 
+                    <a name="ws-online-${userId}" class="post-name ${userFind(usersOnline,userId)?"ws-online":"ws-offline"}" href="/perfil?id=${userId}">${userName}  
+                    </a>
                     </span>
-                    <spam class="like"><i class="far fa-eye"></i>     ${views}</spam>
-                    <span class="like"><i class="fas fa-star"></i>     ${likes}</span >
-                    <a href="/public/post.html?id=${id}" class="like d-none"><i class="far fa-comments"></i>     ${comments}</a >
+                    <spam  class="like"><i class="far fa-eye"></i>     <span id="ws-view-${id}">${views}</span></spam>
+                    <span  class="like"><i class="fas fa-star"></i>     <span id="ws-like-${id}">${likes}</span></span >
+                    <a href="/post?id=${id}"  class="like d-none"><i class="far fa-comments"></i>     <span id="ws-comment-${id}">${comments}</span></a >
                 </div>
                 <div class="post-footer">
                     ${Object.keys(tags).map(index=>{
-                        return `<a href="/public/index.html?tags=${tags[index]}">${tags[index]}</a>`
+                        return `<a href="/?tags=${tags[index]}">${tags[index]}</a>`
                     })}
                   
                 </div>
@@ -49,6 +53,8 @@ const postsComponentList=()=>{
     })
     .catch(err=>console.log(err,'error')
     )
+    console.log("listar post");
+    
 }
 
 const postsListComponentByTags=async(tags)=>{
@@ -106,11 +112,16 @@ const addPostComponent=(tags)=>{
     }).catch(err=>console.log(err));
 }
 
+ 
+
 // likes
 const postLikeView=(id)=>{
+     
     let liked=document.getElementById(`liked-${id}`);
-    let element=document.getElementById(`like-d-${id}`);
+    // let element=document.getElementById(`like-d-${id}`);
+    console.log("liked ",String(liked.innerText));
     
+    console.log("entro",liked);
     if(String(liked.innerText)!="true"){
        //add like
        postLike(id).then(res=>{
@@ -118,8 +129,8 @@ const postLikeView=(id)=>{
             throw Error("Error al hacer like");
             return;
         }  
-        element.innerHTML=`<i id="like-${id}" class='fas fa-star'></i>`;
-         liked.innerHTML="true"; 
+        // element.innerHTML=`<i id="like-${id}" class='fas fa-star'></i>`;
+        //  liked.innerHTML="true"; 
          console.log("tiene like",liked);
     }).catch(err=>console.log(err));
         
@@ -131,10 +142,10 @@ const postLikeView=(id)=>{
                throw Error("Error al hacer like");
                return;
            }
-           element.innerHTML=`<i id="like-${id}"  class='far fa-star'></i>`;
-           liked.innerHTML="false"; 
+        //    element.innerHTML=`<i id="like-${id}"  class='far fa-star'></i>`;
+        //    liked.innerHTML="false"; 
        });     
     }
 }
 
-export {postsComponentList,addPostView,addPostComponent,postLikeView,postsListComponentByTags};
+export {postsComponentList,addPostView,postLikeView,addPostComponent,postsListComponentByTags};

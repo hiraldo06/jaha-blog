@@ -9,6 +9,11 @@ const getFechaMoment=(time)=>{
     let localI18N=window.navigator.language||navigator.browserLanguage;
     return moment(time).locale(localI18N).format("LLL");
 }
-        
 
-export {getFecha,getFechaMoment};
+const userFind=(user,userId)=>{
+    return (user.find(value=>value.userId===userId))
+}
+
+const usersOnline=JSON.parse(localStorage.getItem('userOnline'));
+
+export {getFecha,getFechaMoment,userFind,usersOnline};

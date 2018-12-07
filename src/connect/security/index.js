@@ -5,7 +5,7 @@ const logout=()=>{
         headers:{'Content-Type':"application/json"}
     }).then(res=>{
         
-        window.location='/public/login.html'
+        window.location='/login'
     }).catch(err=>{
 
     });

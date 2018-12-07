@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Allerta+Stencil');
 @import url('https://fonts.googleapis.com/css?family=Allerta+Stencil|Roboto+Mono');
+/* @import url('all.min.css'); */
 html{height: 100%;}
 body{
     background: #1F1C2C;  /* fallback for old browsers */
@@ -424,3 +425,82 @@ background: linear-gradient(to right, #928DAB, #1F1C2C); /* W3C, IE 10+/ Edge, F
     color:black;
     cursor: pointer;
 }
+
+.ws-offline{
+    color: rgb(63, 59, 59);
+}
+.ws-offline::after{
+    content: '';
+}
+
+.ws-online,.conectado{
+    color:rgb(58, 184, 58);
+    font-weight: bold;
+    text-decoration-line: none;
+}
+
+.desconectado{
+    color:rgb(202, 41, 41);
+}
+
+.ws-online::after{
+    
+    content: "▀";
+    top: -.5em;  
+    -webkit-animation: pulse 2s ease infinite;
+	-moz-animation: pulse 2s li ease infinite;
+	animation: pulse 2s ease infinite;
+}
+
+@keyframes pulse {
+	50% {
+		opacity: 1;
+	}
+
+	25%, 75% {
+		opacity: 0;
+	}
+	
+}
+@-webkit-keyframes pulse {
+	50% {
+		opacity: 1;
+	}
+
+	25%, 75% {
+		opacity: 0;
+	}
+}
+
+@-moz-keyframes pulse {
+	50% {
+		opacity: 1;
+	}
+
+	25%, 75% {
+		opacity: 0;
+	}
+}
+
+
+.notification-container{
+    position: fixed;
+    /* background: #fff; */
+    top:0;
+    right: 1%;
+   
+}
+.notification{
+    background: #fff;
+    padding: .5em;
+    border: none;
+    border-radius: .5em;
+    text-align: center;
+    flex-wrap: wrap;
+    margin-top: 1em;
+}
+
+.notification-item{
+    width: 90%;
+}
+
