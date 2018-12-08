@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js webpack-dev-server --mode development --open --port 3001",
+    "start": "webpack nodemon server.js",
     "build": "webpack"
   },
   "repository": {
