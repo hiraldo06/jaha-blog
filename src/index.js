@@ -4,7 +4,7 @@ import {postsComponentList,
 from './component/post';
 import {getPostById,addComment} from './component/post/postDetails';
 import {createPerfil} from './component/perfil';
-import {logout} from './connect/security';
+// import {logout} from './connect/security';
 import {addTags,borrarTags} from './component/post/categorias';
 import {getUsers} from './component/user';
 import {dandoLike} from './component/post/likes';
@@ -48,7 +48,7 @@ let tags=[];
     if(location.pathname==="/"){
         
        
-        document.getElementById('logout').addEventListener('click',logout);
+        // document.getElementById('logout').addEventListener('click',logout);
         //eventos al boton de agregar elementos
         document.getElementById('post-add').addEventListener("click",addPostView);
         let params = new URLSearchParams(location.search); 

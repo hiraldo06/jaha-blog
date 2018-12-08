@@ -2,12 +2,14 @@ const header=()=>{
     
     const navbar=`<div class="nav-items logo">
     <a class="item" href="/">JAHA-BLOG</a>
+    <a class="item" href="https://github.com/hiraldo06"><i class="fab fa-github fa-lg"></i></a>
 </div>
 <div class="nav-items autenticado">
     <a class="item" href="/usuarios"  id='usuarios'>Usuarios</a>
     <a class="item" href="/perfil?id=me"  id='name'></a>
-    <label id="logout" class="item" >Logout</label>
+    <a class="item" href="/logout" >Logout</a>
 </div>`;
+/* <label id="logout" class="item" >Logout</label> en caso de arreglar el logout hector api */
 document.getElementById("nav-bar").innerHTML=navbar
 
     if(localStorage.getItem('token')===undefined ||localStorage.getItem('token')===null){

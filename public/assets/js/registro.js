@@ -30,7 +30,7 @@ let registrar=()=>{
         console.log("res", res);
         
         if(res.id){
-            window.location='/login';   
+            window.location='/sign-in';   
         }
         if(res.message){
             if(res.message.search("Duplicate")!= -1){

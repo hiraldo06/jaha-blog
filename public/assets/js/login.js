@@ -1,5 +1,5 @@
 // const url="http://localhost:8080";
-const url=`http://68.183.27.173:8080`;
+const url=location.origin;
 
 let login=()=>{
     let email = document.getElementById('email').value;
@@ -8,10 +8,12 @@ let login=()=>{
         email,
         password
     }
-    fetch(`${url}/login`,{
+    console.log(location,data)
+
+    fetch(`${url}/logins`,{
         method:"POST",
         body:JSON.stringify(data),
-        headers:{"Content-Type":'application/json'}
+        headers:{'Content-Type':'application/json'}
     })
     .then(res=>res.json())
     .then(
