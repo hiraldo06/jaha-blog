@@ -140,6 +140,6 @@ const login=async(data)=>{
         // console.log(" resultado : ",result)
         return result;
     }
-app.listen(port,hostname,()=>{
+app.listen(port,()=>{
   console.log(`Corriendo el puerto ${port} hostname ${hostname}`);
 })
