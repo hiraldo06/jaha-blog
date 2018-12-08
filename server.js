@@ -14,7 +14,7 @@ app.use(express.static('public'));
 app.use(express.json());
 
 let port =process.env.PORT || 3001;
-let hostname= process.env.hostname || "127.0.0.1";
+let hostname= process.env.IP || "127.0.0.1";
 
 
 // app.use(bodyParser.json());
@@ -140,6 +140,6 @@ const login=async(data)=>{
         // console.log(" resultado : ",result)
         return result;
     }
-app.listen(port,()=>{
+app.listen(port,hostname,()=>{
   console.log(`Corriendo el puerto ${port} hostname ${hostname}`);
 })

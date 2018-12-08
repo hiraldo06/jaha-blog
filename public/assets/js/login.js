@@ -10,7 +10,7 @@ let login=()=>{
     }
     console.log(location,data)
 
-    fetch(`${url}/logins`,{
+    fetch(`${url}/sign-in`,{
         method:"POST",
         body:JSON.stringify(data),
         headers:{'Content-Type':'application/json'}
