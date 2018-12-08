@@ -137,7 +137,6 @@ const login=async(data)=>{
                 status:500
             }
         })
-        // console.log(" resultado : ",result)
         return result;
     }
 app.listen(port,()=>{
