@@ -3,7 +3,7 @@ import {postLikeView} from './index';
 const dandoLike=(e)=>{
     // dando like
     if(typeof e.path != "undefined" || e.originalTarget != "undefined"){
-
+        console.log(e);
         if(typeof e.path != "undefined"){
             let result= String(e.path[0].id)? String(e.path[0].id).split("-"):String(e.path[1].id).split("-");
             
