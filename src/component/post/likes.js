@@ -23,11 +23,11 @@ const dandoLike=(e)=>{
         }
        
    }else if(e.target.id!=""){
-    let result= String(e.target.id).split("-");
-            
-    if(result[0]==="like"){
-        postLikeView(result[1]);
-    }
+        let result= String(e.target.id).split("-");
+                console.log("arget :", e.target.id);
+        if(result[0]==="like"){
+            postLikeView(result[1]);
+        }
    }
 
 }
