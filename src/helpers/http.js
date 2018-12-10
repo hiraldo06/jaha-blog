@@ -1,4 +1,5 @@
-const {token}=JSON.parse(localStorage.getItem('token'));
+const {token,id}=JSON.parse(localStorage.getItem('token'));
+const idToken=id;
 const url=`http://68.183.27.173:8080`;
 // let {userOnline}=JSON.parse(localStorage.getItem('userOnline'));
 
@@ -11,4 +12,4 @@ const headers={
 
 
 
-export {token,params,headers,url};
+export {token,params,headers,url,idToken};

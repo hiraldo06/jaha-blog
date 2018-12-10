@@ -1,6 +1,7 @@
 
 import {postList,postAdd,postLike,postLikeDelete}from '../../connect/post/';
 import {getFechaMoment,userFind,usersOnline} from '../../helpers';
+import { idToken } from '../../helpers/http';
 
 
 
@@ -27,7 +28,7 @@ const postComponent=({body, id, title,userId,
                <div class="post-footer">
                     <span class="post-fecha">${getFechaMoment(createdAt)}, </span>
                     <span class="post-by">by: 
-                    <a name="ws-online-${userId}" class="post-name ${userFind(usersOnline,userId)?"ws-online":"ws-offline"}" href="/perfil?id=${userId}">${userName}  
+                    <a name="ws-online-${userId}" class="post-name ${userFind(usersOnline,userId)||userId===idToken?"ws-online":"ws-offline"}" href="/perfil?id=${userId}">${userName}  
                     </a>
                     </span>
                     <spam  class="like"><i class="far fa-eye"></i>     <span id="ws-view-${id}">${views}</span></spam>
