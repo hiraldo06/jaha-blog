@@ -105,6 +105,10 @@ app.get('/logout', (req, res) => {
 });
 
 
+app.use(function(req, res, next) {
+    res.status(404).sendFile(__dirname+"/public/404.html");
+  });
+
 app.listen(port,()=>{
   console.log(`Corriendo el puerto ${port} hostname ${hostname}`);
 })
