@@ -61,12 +61,19 @@ let tags=[];
             })
         }
         
+        
+
         document.addEventListener('click',function(e){
             //console.log("estamos aqui",e);
            
             //LISTENER CATEGORIAS POST 
            if(e.target.id==='tags-btn'){
                document.getElementById('tags-btn').addEventListener('click',addTags(tags));
+               document.getElementById('tarea').addEventListener("keypress",(e)=>{
+                if(e.keyCode===13){
+                    document.getElementById('tags-btn').focus();
+                }
+              })
            }
            //borra tags
            if(e.target.nodeName==="SPAN"){

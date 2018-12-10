@@ -1,7 +1,7 @@
 const express=require('express');
-const fetch=require('node-fetch');
-
-const bodyParser=require('body-parser');
+const {sessionChecker,sessionCheckerRoute}=require('./server/middlewares/authentication');
+const {login}=require('./server/connects/login');
+// const bodyParser=require('body-parser');
 const cookieParser=require('cookie-parser');
 
 const session= require('express-session');
@@ -37,31 +37,12 @@ app.use((req, res, next) => {
   next();
 });
 
-const sessionChecker = (req, res, next) => {
-  if (req.session.user && req.cookies.user_sid) {
-      
-      res.redirect('/');
-  } else {
-      console.log(req.session.user,": User ", "user_sid :",req.cookies.user_sid)
-      next();
-      
-  }    
-};
 
-const sessionCheckerRoute = (req, res, next) => {
-    if (req.session.user && req.cookies.user_sid) {
-        next();
-    } else {
-        console.log(req.session.user,": User ", "user_sid :",req.cookies.user_sid)
-       res.redirect('/sign-in');
-        
-    }    
-  };
 
 // route for user Login
 app.route('/sign-in')
     .get(sessionChecker, (req, res) => {
-        res.sendFile(__dirname + '/public/login.html');
+        res.sendFile(__dirname+'/public/login.html');
     })
     .post((req, resp) => {
             let data={
@@ -123,22 +104,7 @@ app.get('/logout', (req, res) => {
     }
 });
 
-const login=async(data)=>{
-       let result=await fetch("http://68.183.27.173:8080/login",{
-            method:"POST",
-            body:JSON.stringify(data),
-            headers:{"Content-Type":'application/json'}
-        }).then(res=>res.json())
-        .then(res=>{
-           return res; // console.log(res);
-        }).catch(err=>{
-            return {
-                err,
-                status:500
-            }
-        })
-        return result;
-    }
+
 app.listen(port,()=>{
   console.log(`Corriendo el puerto ${port} hostname ${hostname}`);
 })

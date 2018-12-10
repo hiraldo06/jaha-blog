@@ -2,7 +2,7 @@ const header=()=>{
     
     const navbar=`<div class="nav-items logo">
     <a class="item" href="/">JAHA-BLOG</a>
-    <a class="item" href="https://github.com/hiraldo06"><i class="fab fa-github fa-lg"></i></a>
+    <a class="item" href="https://github.com/hiraldo06" target="_blank"><i class="fab fa-github fa-lg"></i></a>
 </div>
 <div class="nav-items autenticado">
     <a class="item" href="/usuarios"  id='usuarios'>Usuarios</a>

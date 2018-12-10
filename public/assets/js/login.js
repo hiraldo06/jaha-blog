@@ -32,4 +32,9 @@ let login=()=>{
 }
 (function(){
     document.getElementById('btn').addEventListener("click",login);
+    document.getElementById('password').addEventListener("keypress",(e)=>{
+        if(e.keyCode===13){
+            document.getElementById('btn').focus();
+        }
+    })
 })();

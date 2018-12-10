@@ -13,6 +13,7 @@ let addTags=(tags)=>{
     
     listar(tags);
     element.value="";
+    element.focus();
     return tags;
 }
 let listar=(tags)=>{

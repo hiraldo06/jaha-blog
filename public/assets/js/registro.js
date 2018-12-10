@@ -47,4 +47,9 @@ let registrar=()=>{
 
 (function(){
     document.getElementById("btn").addEventListener('click',registrar);
+    document.getElementById('re-contrasena').addEventListener("keypress",(e)=>{
+        if(e.keyCode===13){
+            document.getElementById('btn').focus();
+        }
+    })
 })();
