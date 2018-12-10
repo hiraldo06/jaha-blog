@@ -22,14 +22,14 @@ const dandoLike=(e)=>{
             console.log("en el path FIREFOX ", e.originalTarget.id,result)
         }
        
-   }else if(e.target.id!=""){
+   }else{
         let result= String(e.target.id).split("-");
-                console.log("arget :", e.target.id);
+               
         if(result[0]==="like"){
             postLikeView(result[1]);
         }
    }
-   console.log("arget :", e.target.id);
+   
 }
 
 export {dandoLike};
