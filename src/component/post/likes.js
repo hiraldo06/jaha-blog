@@ -29,7 +29,7 @@ const dandoLike=(e)=>{
             postLikeView(result[1]);
         }
    }
-
+   console.log("arget :", e.target.id);
 }
 
 export {dandoLike};
