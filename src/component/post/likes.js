@@ -11,6 +11,7 @@ const dandoLike=(e)=>{
                 postLikeView(result[1]);
             }
             console.log("en el path google si ", e.path[0].id)
+            return;
         }
 
         if(typeof e.originalTarget != "undefined"){
@@ -20,15 +21,16 @@ const dandoLike=(e)=>{
                 postLikeView(result[1]);      
             }
             console.log("en el path FIREFOX ", e.originalTarget.id,result)
+            return;
         }
        
-   }else{
+   }
         let result= String(e.target.id).split("-");
                
         if(result[0]==="like"){
             postLikeView(result[1]);
         }
-   }
+   
    
 }
 
