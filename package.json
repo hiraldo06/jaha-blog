@@ -24,6 +24,8 @@
   },
   "homepage": "https://github.com/hiraldo06/jaha-blog#readme",
   "devDependencies": {
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.2.0",
     "webpack-dev-server": "^3.1.10"
   },
   "dependencies": {
@@ -33,8 +35,6 @@
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "moment": "^2.22.2",
-    "node-fetch": "^2.3.0",
-    "webpack": "^4.26.0",
-    "webpack-cli": "^3.1.2"
+    "node-fetch": "^2.3.0"
   }
 }

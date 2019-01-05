@@ -48,9 +48,10 @@ const postComponent=({body, id, title,userId,
 const postsComponentList=()=>{
     document.getElementById("main").innerHTML="";
     postList().then(res=>{
-        Object.keys(res).map(index=>{
-            document.getElementById('main').innerHTML+= postComponent(res[index]);
-        });
+       let html =Object.keys(res).map(index=>{
+            return postComponent(res[index]);
+        }).join('');
+        document.getElementById('main').innerHTML=html;
     })
     .catch(err=>console.log(err,'error')
     )
